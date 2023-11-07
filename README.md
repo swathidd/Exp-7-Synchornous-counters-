@@ -72,38 +72,39 @@ RegisterNumber:212222230154
 ```
 ## UPCOUNTER:
 ```
-module upcounter(A,clk);
-output reg [3:0]A;
+module Counters(clk,A);
 input clk;
-always@(posedge clk)
+output reg [3:0]A;
+always @(posedge clk)
 begin
-A[0]=((((A[1])&(A[2]))&A[3])^A[0]);
-A[1]=(((A[2])&(A[3]))^A[1]);
-A[2]=((A[3])^A[2]);
-A[3]=1^A[3];
+	A[3]=(((A[0])&(A[1])&(A[2]))^A[3]);
+	A[2]=(((A[0])&(A[1]))^A[2]);
+	A[1]=(A[0])^A[1];
+	A[0]=A[0]^1;
 end
 endmodule
 ```
 ## DOWNCOUNTER:
 ```
-module downcounter(A,clk);
-output reg [3:0]A;
+module dCounters(clk,A);
 input clk;
+output reg [3:0]A;
 always@(posedge clk)
 begin
-A[3]=((((~A[2])&(~A[1]))&(~A[0]))^A[3]);
-A[2]=(((~A[1])&(~A[0]))^A[2]);
-A[1]=((~A[0])^A[1]);
-A[0]=1^A[0];
+	A[3]=(((~A[0])&(~A[1])&(~A[2]))^A[3]);
+	A[2]=(((~A[0])&(~A[1]))^A[2]);
+	A[1]=(~A[0])^A[1];
+	A[0]=1^A[0];
 end
 endmodule
 ```
 ### RTL LOGIC UP COUNTER AND DOWN COUNTER 
-## Upcounter RTL:
+## Upcounter:
 ![image](https://github.com/swathidd/Exp-7-Synchornous-counters-/assets/121300272/827f52f3-7fa3-421d-a1dc-5f8c27d8d754)
 
-## Downcounter RTL:
-![image](https://github.com/swathidd/Exp-7-Synchornous-counters-/assets/121300272/860474f5-1d7d-4309-aa12-552317e40b05)
+## Downcounter:
+![image](https://github.com/swathidd/Exp-7-Synchornous-counters-/assets/121300272/c3d53c57-595a-4956-a476-7fbc671ce1b2)
+
 
 ### TIMING DIGRAMS FOR COUNTER 
 ##  Upcounter Waveform:
@@ -112,9 +113,9 @@ endmodule
 ![image](https://github.com/swathidd/Exp-7-Synchornous-counters-/assets/121300272/bdf9cbab-c4cc-4c72-9251-7a595f47a5e6)
 
 # TRUTH TABLE 
-##  Upcounter Truthtable:
+##  Upcounter:
 ![image](https://github.com/swathidd/Exp-7-Synchornous-counters-/assets/121300272/68a30bae-8d0e-4e56-b776-09027915c59e)
-##  Downcounter Waveform:
+##  Downcounter:
 ![image](https://github.com/swathidd/Exp-7-Synchornous-counters-/assets/121300272/a07ea311-5ec3-4a38-99fd-8e03b706c461)
 
 # RESULTS 
